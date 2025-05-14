@@ -1,5 +1,5 @@
 import 'package:cookly/core/constants/app_colors.dart';
-import 'package:cookly/features/home/presentation/pages/home_layout.dart';
+import 'package:cookly/features/home/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class CooklyApp extends StatelessWidget {
@@ -12,9 +12,10 @@ class CooklyApp extends StatelessWidget {
       title: 'Cookly',
       theme: ThemeData(
         useMaterial3: true,
+        scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
       ),
-      home: HomeLayout()
+      home: HomeScreen(),
     );
   }
 }
