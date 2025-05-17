@@ -1,18 +1,10 @@
-import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../error/exceptions.dart';
-import '../flavors/flavors_config.dart';
 
 enum CodeStatus { defaultCode, activation }
 
-Map<String, String> headers = <String, String>{
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Accept-Language': 'ar',
-};
-
-String baseUrl = FlavorConfig.instance.variables['baseUrl'];
+String baseUrl = 'https://dummyjson.com/recipes';
 
 class ApiBaseHelper {
   final Dio dio;
@@ -32,7 +24,7 @@ class ApiBaseHelper {
       ),
     );
   }
-  
+
   Future<dynamic> get({
     required String url,
     String? token,
@@ -40,10 +32,6 @@ class ApiBaseHelper {
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
-      if (token != null) {
-        headers['Authorization'] = 'Bearer $token';
-        dio.options.headers = headers;
-      }
       final Response response = await dio.get(
         url,
         data: body,
@@ -66,14 +54,7 @@ class ApiBaseHelper {
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
-      if (token != null) {
-        headers['Authorization'] = 'Bearer $token';
-        dio.options.headers = headers;
-        log(baseUrl + url + token);
-      } else {
-        headers.remove('Authorization');
-        dio.options.headers = headers;
-      }
+ 
       FormData formData = FormData.fromMap(body);
       final Response response = await dio.post(
         url,
@@ -92,10 +73,7 @@ class ApiBaseHelper {
 
   Future<dynamic> delete({required String url, String? token}) async {
     try {
-      if (token != null) {
-        headers['Authorization'] = 'Bearer $token';
-        dio.options.headers = headers;
-      }
+  
       final Response response = await dio.delete(url);
       final responseJson = _returnResponse(response);
       return responseJson;
@@ -190,4 +168,3 @@ class UnAuthorizedException extends AppException {
 class InvalidInputException extends AppException {
   InvalidInputException([String? message]) : super(message, 'Invalid Input: ');
 }
-
