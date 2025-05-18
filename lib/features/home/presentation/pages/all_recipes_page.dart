@@ -1,6 +1,6 @@
 import 'package:cookly/core/utils/request_status.dart';
 import 'package:cookly/features/home/data/models/recipes_response.dart';
-import 'package:cookly/features/home/presentation/cubit/recipes_cubit.dart';
+import 'package:cookly/features/home/presentation/cubits/recipes_cubit/recipes_cubit.dart';
 import 'package:cookly/features/home/presentation/widgets/recipes_list_view_builder.dart';
 import 'package:cookly/injection_container.dart';
 import 'package:flutter/material.dart';

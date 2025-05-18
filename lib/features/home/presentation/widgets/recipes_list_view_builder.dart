@@ -1,5 +1,5 @@
 import 'package:cookly/features/home/data/models/recipes_response.dart';
-import 'package:cookly/features/home/presentation/cubit/recipes_cubit.dart';
+import 'package:cookly/features/home/presentation/cubits/recipes_cubit/recipes_cubit.dart';
 import 'package:cookly/features/home/presentation/widgets/recipe_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

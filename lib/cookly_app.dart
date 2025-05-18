@@ -1,7 +1,7 @@
 import 'package:cookly/core/constants/app_colors.dart';
 import 'package:cookly/core/constants/size_config.dart';
 import 'package:cookly/core/utils/navigator.dart';
-import 'package:cookly/features/home/presentation/pages/home_screen.dart';
+import 'package:cookly/features/home/presentation/pages/home_layout_screen.dart';
 import 'package:cookly/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +28,7 @@ class CooklyApp extends StatelessWidget {
             ),
           ),
           navigatorKey: sl<AppNavigator>().navigatorKey,
-          home: const HomeScreen(),
+          home:  HomeLayoutScreen(),
         );
       },
     );
