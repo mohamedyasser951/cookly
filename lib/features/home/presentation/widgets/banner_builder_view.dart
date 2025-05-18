@@ -13,18 +13,18 @@ class _BannerBuilderViewState extends State<BannerBuilderView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300.h,
+      height: 250.h,
       child: PageView.builder(
         scrollDirection: Axis.horizontal,
+        allowImplicitScrolling: true,
         physics: BouncingScrollPhysics(),
         itemCount: 3,
         itemBuilder: (context, index) {
           return SizedBox(
-            child: Card(
-              shape: BeveledRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Image.asset(Assets.imagesRecipeBanner, fit: BoxFit.cover),
+            height: 250.h,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10.r),
+              child: Image.asset(Assets.imagesRecipeBanner),
             ),
           );
         },

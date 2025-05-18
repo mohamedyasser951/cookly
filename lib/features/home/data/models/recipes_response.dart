@@ -72,7 +72,7 @@ class Recipe extends Equatable {
   final num? caloriesPerServing;
   final List<String> tags;
   final num? userId;
-  final String? image;
+  final String image;
   final num? rating;
   final num? reviewCount;
   final List<String> mealType;

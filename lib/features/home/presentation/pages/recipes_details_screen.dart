@@ -20,7 +20,7 @@ class RecipeDetailsScreen extends StatelessWidget {
                   child: CachedNetworkImage(
                     height: 240,
                     width: double.infinity,
-                    imageUrl: recipe.image!,
+                    imageUrl: recipe.image,
                     errorWidget:
                         (context, url, error) => const Icon(Icons.error),
                     fit: BoxFit.cover,

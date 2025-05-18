@@ -27,7 +27,7 @@ class RecipeItem extends StatelessWidget {
                 child: CachedNetworkImage(
                   height: 160,
                   width: double.infinity,
-                  imageUrl: recipe.image!,
+                  imageUrl: recipe.image,
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                   fit: BoxFit.fitWidth,
                 ),

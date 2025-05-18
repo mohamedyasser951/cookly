@@ -27,7 +27,7 @@ class HomeLayoutScreen extends StatelessWidget {
           return BlocBuilder<BottomNavCubit, int>(
             builder: (context, index) {
               return Scaffold(
-                 extendBody: true
+                extendBody: true,
                 backgroundColor: AppColors.scaffoldBackgroundColor,
                 body: IndexedStack(index: index, children: pages),
                 floatingActionButtonLocation:
@@ -103,4 +103,8 @@ class HomeLayoutScreen extends StatelessWidget {
               );
             },
           );
-   
+        },
+      ),
+    );
+  }
+}
