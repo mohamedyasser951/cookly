@@ -98,6 +98,10 @@ flutter_svg
 3.4
 file:///C:/Users/mohamed/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-2.1.0/
 file:///C:/Users/mohamed/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-2.1.0/lib/
+fluttertoast
+2.12
+file:///C:/Users/mohamed/AppData/Local/Pub/Cache/hosted/pub.dev/fluttertoast-8.2.12/
+file:///C:/Users/mohamed/AppData/Local/Pub/Cache/hosted/pub.dev/fluttertoast-8.2.12/lib/
 get_it
 3.0
 file:///C:/Users/mohamed/AppData/Local/Pub/Cache/hosted/pub.dev/get_it-7.7.0/
@@ -306,6 +310,10 @@ flutter_test
 3.7
 file:///C:/development/flutter_sdk/packages/flutter_test/
 file:///C:/development/flutter_sdk/packages/flutter_test/lib/
+flutter_web_plugins
+3.7
+file:///C:/development/flutter_sdk/packages/flutter_web_plugins/
+file:///C:/development/flutter_sdk/packages/flutter_web_plugins/lib/
 cookly
 3.7
 file:///F:/Flutter%20Projects/cookly/

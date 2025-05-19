@@ -38,7 +38,7 @@ class AppNavigator {
 
   dynamic popToRawy({dynamic object}) {
     return navigatorKey.currentState!.pushAndRemoveUntil(
-      MaterialPageRoute(builder: (BuildContext context) => const CooklyApp()),
+      MaterialPageRoute(builder: (BuildContext context) =>  CooklyApp()),
       (Route<dynamic> route) => false,
     );
   }

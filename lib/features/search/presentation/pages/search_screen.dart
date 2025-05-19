@@ -53,9 +53,7 @@ class SearchScreen extends StatelessWidget {
                             return ListTile(
                               title: Text(state.recipes[index].name),
                               subtitle: Text(state.recipes[index].cuisine!),
-                              onTap: () {
-                                // Handle item tap
-                              },
+                              onTap: () {},
                             );
                           },
                         ),

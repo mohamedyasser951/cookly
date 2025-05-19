@@ -25,3 +25,6 @@ com.example.cookly.app-resValues-23 F:\Flutter Projects\cookly\build\app\generat
 com.example.cookly.app-packageDebugResources-24 F:\Flutter Projects\cookly\build\app\intermediates\incremental\debug\packageDebugResources\merged.dir
 com.example.cookly.app-packageDebugResources-25 F:\Flutter Projects\cookly\build\app\intermediates\incremental\debug\packageDebugResources\stripped.dir
 com.example.cookly.app-debug-26 F:\Flutter Projects\cookly\build\app\intermediates\merged_res\debug\mergeDebugResources
+com.example.cookly.app-debug-27 F:\Flutter Projects\cookly\build\fluttertoast\intermediates\packaged_res\debug\packageDebugResources
+com.example.cookly.app-debug-28 F:\Flutter Projects\cookly\build\path_provider_android\intermediates\packaged_res\debug\packageDebugResources
+com.example.cookly.app-debug-29 F:\Flutter Projects\cookly\build\sqflite_android\intermediates\packaged_res\debug\packageDebugResources

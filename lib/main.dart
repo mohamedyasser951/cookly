@@ -15,5 +15,5 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
   
   await ServiceLocator.init();
-  runApp(const CooklyApp());
+  runApp( CooklyApp());
 }
