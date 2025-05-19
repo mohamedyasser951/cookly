@@ -2,6 +2,7 @@ import 'package:cookly/core/constants/app_colors.dart';
 import 'package:cookly/core/constants/assets.dart';
 import 'package:cookly/features/home/presentation/cubits/bottom_nav/bottom_nav.dart';
 import 'package:cookly/features/home/presentation/pages/home_screen.dart';
+import 'package:cookly/features/search/presentation/pages/search_screen.dart';
 import 'package:cookly/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,7 @@ class HomeLayoutScreen extends StatelessWidget {
   HomeLayoutScreen({super.key});
   final List<Widget> pages = [
     HomeScreen(),
-    Container(),
+    SearchScreen(),
     Container(),
     Container(),
     Container(),
@@ -27,7 +28,7 @@ class HomeLayoutScreen extends StatelessWidget {
           return BlocBuilder<BottomNavCubit, int>(
             builder: (context, index) {
               return Scaffold(
-                extendBody: true,
+                // extendBody: true,
                 backgroundColor: AppColors.scaffoldBackgroundColor,
                 body: IndexedStack(index: index, children: pages),
                 floatingActionButtonLocation:

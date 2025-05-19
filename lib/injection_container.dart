@@ -1,6 +1,7 @@
 import 'package:cookly/core/utils/api_basehelper.dart';
 import 'package:cookly/core/utils/navigator.dart';
 import 'package:cookly/features/home/home_inject.dart';
+import 'package:cookly/features/search/search_inject.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -10,6 +11,7 @@ abstract class ServiceLocator {
   static Future<void> init() async {
     //Features
     initRecipes();
+    initSearch();
     //Core
     _injectAppNavigator();
     _injectApiBaseHelper();
@@ -23,7 +25,7 @@ void _injectAppNavigator() {
 void _injectApiBaseHelper() {
   sl.registerLazySingleton<ApiBaseHelper>(() => ApiBaseHelper(dio: sl()));
 
-    sl.registerLazySingleton(
+  sl.registerLazySingleton(
     () => Dio(
       BaseOptions(
         baseUrl: baseUrl,
@@ -33,7 +35,6 @@ void _injectApiBaseHelper() {
       ),
     ),
   );
-
 }
 
 AppNavigator appNavigator = sl<AppNavigator>();

@@ -3,6 +3,15 @@ import 'package:cookly/features/home/data/models/recipes_response.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class RecipesRepository {
-  Future<Either<Failure, RecipeResponse>> getAllRecipes(int skip);
-  
+  Future<Either<Failure, RecipeResponse>> getAllRecipes(
+    AlllRecipesParams params,
+  );
+}
+
+class AlllRecipesParams {
+  final int skip;
+  final String? sortedBy;
+  final String? order;
+
+  AlllRecipesParams({required this.skip, this.sortedBy, this.order});
 }

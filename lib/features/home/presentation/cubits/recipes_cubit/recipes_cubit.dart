@@ -1,5 +1,6 @@
 import 'package:cookly/core/utils/request_status.dart';
 import 'package:cookly/features/home/data/models/recipes_response.dart';
+import 'package:cookly/features/home/domain/repositories/recipes_repository.dart';
 import 'package:cookly/features/home/domain/usecases/get_all_recipes.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
@@ -15,6 +16,21 @@ class RecipesCubit extends Cubit<RecipesState> {
     scrollController.addListener(_onScroll);
   }
 
+  Future<void> clear() async {
+    emit(state.clear(isSearchText: true, sortBy: true));
+    getAllRecipesEvent();
+  }
+
+  Future<void> searchRecipes(String text) async {
+    emit(state.copyWith(searchText: text));
+    getAllRecipesEvent();
+  }
+
+  Future<void> orderBy(String text) async {
+    emit(state.copyWith(orderBy: text));
+    getAllRecipesEvent();
+  }
+
   void _onScroll() {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
@@ -25,7 +41,13 @@ class RecipesCubit extends Cubit<RecipesState> {
   void getAllRecipesEvent() async {
     emit(state.copyWith(allRecipesStatus: RequestStatus.loading, skip: 0));
 
-    final failureOrRecipes = await getAllRecipes(state.skip);
+    AlllRecipesParams params = AlllRecipesParams(
+      skip: state.skip,
+      sortedBy: state.orderBy ,
+      order: state.searchText,
+    );
+
+    final failureOrRecipes = await getAllRecipes(params);
 
     failureOrRecipes.fold(
       (failure) {
@@ -63,7 +85,13 @@ class RecipesCubit extends Cubit<RecipesState> {
         skip: state.skip + 10,
       ),
     );
-    final failureOrRecipes = await getAllRecipes(state.skip);
+    AlllRecipesParams params = AlllRecipesParams(
+      skip: state.skip,
+      sortedBy: state.orderBy == 'default' ? null : state.orderBy,
+      order: state.searchText,
+    );
+
+    final failureOrRecipes = await getAllRecipes(params);
 
     failureOrRecipes.fold(
       (failure) {

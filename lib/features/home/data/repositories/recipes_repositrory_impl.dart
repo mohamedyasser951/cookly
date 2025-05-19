@@ -9,9 +9,11 @@ class RecipesRepositroryImpl implements RecipesRepository {
   final RecipesDataSource recipesDataSource;
   RecipesRepositroryImpl({required this.recipesDataSource});
   @override
-  Future<Either<Failure, RecipeResponse>> getAllRecipes(int skip) async {
+  Future<Either<Failure, RecipeResponse>> getAllRecipes(
+    AlllRecipesParams params,
+  ) async {
     try {
-      final response = await recipesDataSource.getAllRecipes(skip);
+      final response = await recipesDataSource.getAllRecipes(params);
       return Right(response);
     } on ServerException catch (error) {
       return Left(ServerFailure.formServerException(error));
