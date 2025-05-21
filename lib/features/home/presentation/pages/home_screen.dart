@@ -32,19 +32,26 @@ class HomeScreen extends StatelessWidget {
                     ),
                     CircleAvatar(
                       backgroundColor: Colors.white,
-                      child: Icon(Icons.notifications),
+                      child: Icon(Icons.notifications_none_sharp),
                     ),
                   ],
                 ),
                 AppSpacer(heightRatio: 0.4),
                 Text(
                   "Featured Recipes",
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
                 ),
                 AppSpacer(heightRatio: 0.4),
                 BannerBuilderView(),
                 AppSpacer(heightRatio: 0.4),
-                Text("Category", style: Theme.of(context).textTheme.bodyLarge),
+                Text(
+                  "Category",
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+                ),
                 AppSpacer(heightRatio: 0.4),
                 MealsTypeBuilder(),
                 AppSpacer(heightRatio: 0.5),
@@ -61,7 +68,10 @@ class HomeScreen extends StatelessWidget {
                       },
                       child: Text(
                         "See all",
-                        style: TextStyle(color: AppColors.primaryColor),
+                        style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

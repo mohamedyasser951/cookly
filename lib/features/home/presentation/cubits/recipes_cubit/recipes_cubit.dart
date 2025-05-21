@@ -43,7 +43,7 @@ class RecipesCubit extends Cubit<RecipesState> {
 
     AlllRecipesParams params = AlllRecipesParams(
       skip: state.skip,
-      sortedBy: state.orderBy ,
+      sortedBy: state.orderBy,
       order: state.searchText,
     );
 
