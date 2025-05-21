@@ -8,9 +8,9 @@ class RecipesState extends Equatable {
   final String paginationErrorMessage;
   final int skip;
   final int last;
-  final String? searchText;
   final String? orderBy;
-  final bool? sortBy;
+  final String? sortBy;
+
   const RecipesState({
     this.allRecipesStatus = RequestStatus.initial,
     this.pginationStatus = RequestStatus.initial,
@@ -19,12 +19,11 @@ class RecipesState extends Equatable {
     this.paginationErrorMessage = '',
     this.skip = 0,
     this.last = 0,
-    this.searchText,
+    this.sortBy,
     this.orderBy,
-    this.sortBy = false,
   });
 
-  RecipesState clear({bool isSearchText = true, bool sortBy = true}) {
+  RecipesState clear({bool sortBy = false, bool orderBy = false}) {
     return RecipesState(
       allRecipesStatus: allRecipesStatus,
       pginationStatus: pginationStatus,
@@ -33,8 +32,8 @@ class RecipesState extends Equatable {
       paginationErrorMessage: paginationErrorMessage,
       skip: skip,
       last: last,
-      searchText: isSearchText ? null : searchText,
       sortBy: sortBy ? null : this.sortBy,
+      orderBy: orderBy ? "asc" : this.orderBy,
     );
   }
 
@@ -48,7 +47,7 @@ class RecipesState extends Equatable {
     int? last,
     String? searchText,
     String? orderBy,
-    bool? sortBy,
+    String? sortBy,
   }) {
     return RecipesState(
       allRecipesStatus: allRecipesStatus ?? this.allRecipesStatus,
@@ -59,7 +58,6 @@ class RecipesState extends Equatable {
           paginationErrorMessage ?? this.paginationErrorMessage,
       skip: skip ?? this.skip,
       last: last ?? this.last,
-      searchText: searchText ?? this.searchText,
       orderBy: orderBy ?? this.orderBy,
       sortBy: sortBy ?? this.sortBy,
     );

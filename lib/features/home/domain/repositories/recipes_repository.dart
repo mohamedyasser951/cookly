@@ -10,8 +10,23 @@ abstract class RecipesRepository {
 
 class AlllRecipesParams {
   final int skip;
+  final int limit;
   final String? sortedBy;
   final String? order;
 
-  AlllRecipesParams({required this.skip, this.sortedBy, this.order});
+  AlllRecipesParams({
+    required this.skip,
+    this.sortedBy,
+    this.order,
+    this.limit = 10,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'skip=': skip,
+      'limit=': limit,
+      if (sortedBy != null) 'sortBy=': sortedBy,
+      if (order != null) 'order=': order,
+    };
+  }
 }

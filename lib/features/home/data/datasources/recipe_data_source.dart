@@ -2,11 +2,12 @@ import 'package:cookly/core/utils/api_basehelper.dart';
 import 'package:cookly/features/home/data/models/recipes_response.dart';
 import 'package:cookly/features/home/domain/repositories/recipes_repository.dart';
 
+//https://dummyjson.com/recipes?limit=10&skip=0&sortBy=name&order=asc
 
-String getALLRecipes({required int skip, String? sortedBy, String? order}) =>
-    "?limit=10&skip=$skip"
-    '${sortedBy != null ? '&sortBy=$sortedBy' : ''}'
-    '${order != null ? '&order=$order' : ''}';
+// String getALLRecipes({required int skip, String? sortedBy, String? order}) =>
+//     'https://dummyjson.com/recipes?limit=10&skip=$skip&sortBy=${sortedBy ?? 'name'}&order=${order ?? 'asc'}';
+
+String allRecipesUrl = '';
 
 abstract class RecipesDataSource {
   Future<RecipeResponse> getAllRecipes(AlllRecipesParams params);
@@ -19,11 +20,8 @@ class RecipeDataSourceImpl extends RecipesDataSource {
   Future<RecipeResponse> getAllRecipes(AlllRecipesParams params) async {
     try {
       final response = await apiBaseHelper.get(
-        url: getALLRecipes(
-          skip: params.skip,
-          sortedBy: params.sortedBy,
-          order: params.order,
-        ),
+        url: allRecipesUrl,
+        queryParameters: params.toMap(),
       );
       return RecipeResponse.fromJson(response);
     } catch (e) {

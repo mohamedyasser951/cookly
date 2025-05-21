@@ -13,7 +13,11 @@ class AllRecipesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<RecipesCubit>()..getAllRecipesEvent(),
+      create:
+          (context) =>
+              sl<RecipesCubit>()
+                ..getAllRecipesEvent()
+                ..clearFilters(orderBy: true, sortBy: true),
       child: Builder(
         builder: (context) {
           return Scaffold(
@@ -22,15 +26,22 @@ class AllRecipesScreen extends StatelessWidget {
                 PopupMenuButton<String>(
                   icon: const Icon(Icons.sort),
                   onSelected: (value) {
-                    context.read<RecipesCubit>().clear();
-                    context.read<RecipesCubit>().orderBy(value);
+                    context.read<RecipesCubit>().setFilters(
+                      sortBy: value,
+                      orderBy: value == 'asc' ? 'asc' : 'desc',
+                    );
                   },
                   itemBuilder: (context) {
                     return [
                       PopupMenuItem(
-                        value: 'name',
+                        value: 'asc',
                         onTap: () {},
                         child: const Text('A-Z'),
+                      ),
+                      PopupMenuItem(
+                        value: 'desc',
+                        onTap: () {},
+                        child: const Text('Z-A'),
                       ),
                       PopupMenuItem(
                         value: 'rating',
@@ -40,7 +51,7 @@ class AllRecipesScreen extends StatelessWidget {
                       PopupMenuItem(
                         value: 'cookTimeMinutes',
                         onTap: () {},
-                        child: const Text('Time'),
+                        child: const Text('Cook Time'),
                       ),
                     ];
                   },
@@ -52,39 +63,46 @@ class AllRecipesScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: BlocSelector<RecipesCubit, RecipesState, RequestStatus>(
-                      selector: (state) => state.allRecipesStatus,
-                      builder: (builder, state) {
-                        if (state == RequestStatus.loading ||
-                            state == RequestStatus.initial) {
-                          return const Center(child: CircularProgressIndicator());
-                        } else if (state == RequestStatus.error) {
-                          return BlocSelector<RecipesCubit, RecipesState, String>(
-                            selector: (state) {
-                              return state.recipesErrorMessage;
-                            },
-                            builder: (context, state) {
-                              return Center(child: Text(state));
-                            },
-                          );
-                        }
-                        if (state == RequestStatus.success) {
-                          return BlocSelector<
-                            RecipesCubit,
-                            RecipesState,
-                            List<Recipe>
-                          >(
-                            selector: (state) {
-                              return state.recipes;
-                            },
-                            builder: (context, state) {
-                              return RecipesListViewBuilder(recipes: state);
-                            },
-                          );
-                        }
-                        return const SizedBox.shrink();
-                      },
-                    ),
+                    child:
+                        BlocSelector<RecipesCubit, RecipesState, RequestStatus>(
+                          selector: (state) => state.allRecipesStatus,
+                          builder: (builder, state) {
+                            if (state == RequestStatus.loading ||
+                                state == RequestStatus.initial) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else if (state == RequestStatus.error) {
+                              return BlocSelector<
+                                RecipesCubit,
+                                RecipesState,
+                                String
+                              >(
+                                selector: (state) {
+                                  return state.recipesErrorMessage;
+                                },
+                                builder: (context, state) {
+                                  return Center(child: Text(state));
+                                },
+                              );
+                            }
+                            if (state == RequestStatus.success) {
+                              return BlocSelector<
+                                RecipesCubit,
+                                RecipesState,
+                                List<Recipe>
+                              >(
+                                selector: (state) {
+                                  return state.recipes;
+                                },
+                                builder: (context, state) {
+                                  return RecipesListViewBuilder(recipes: state);
+                                },
+                              );
+                            }
+                            return const SizedBox.shrink();
+                          },
+                        ),
                   ),
                   BlocSelector<RecipesCubit, RecipesState, RequestStatus>(
                     selector: (state) => state.pginationStatus,
@@ -116,7 +134,7 @@ class AllRecipesScreen extends StatelessWidget {
               ),
             ),
           );
-        }
+        },
       ),
     );
   }

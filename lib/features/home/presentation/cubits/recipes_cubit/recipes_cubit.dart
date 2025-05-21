@@ -16,18 +16,17 @@ class RecipesCubit extends Cubit<RecipesState> {
     scrollController.addListener(_onScroll);
   }
 
-  Future<void> clear() async {
-    emit(state.clear(isSearchText: true, sortBy: true));
+  void clearFilters({bool sortBy = false, bool orderBy = false}) {
+    emit(state.clear(sortBy: sortBy, orderBy: orderBy));
+  }
+
+  void setFilters({String? sortBy, String? orderBy}) {
+    emit(state.copyWith(sortBy: sortBy, orderBy: orderBy, skip: 0));
     getAllRecipesEvent();
   }
 
   Future<void> searchRecipes(String text) async {
     emit(state.copyWith(searchText: text));
-    getAllRecipesEvent();
-  }
-
-  Future<void> orderBy(String text) async {
-    emit(state.copyWith(orderBy: text));
     getAllRecipesEvent();
   }
 
@@ -44,7 +43,7 @@ class RecipesCubit extends Cubit<RecipesState> {
     AlllRecipesParams params = AlllRecipesParams(
       skip: state.skip,
       sortedBy: state.orderBy,
-      order: state.searchText,
+      order: state.orderBy,
     );
 
     final failureOrRecipes = await getAllRecipes(params);
@@ -87,8 +86,8 @@ class RecipesCubit extends Cubit<RecipesState> {
     );
     AlllRecipesParams params = AlllRecipesParams(
       skip: state.skip,
-      sortedBy: state.orderBy == 'default' ? null : state.orderBy,
-      order: state.searchText,
+      sortedBy: state.orderBy,
+      order: state.orderBy,
     );
 
     final failureOrRecipes = await getAllRecipes(params);
