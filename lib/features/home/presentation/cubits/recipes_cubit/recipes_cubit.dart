@@ -18,10 +18,11 @@ class RecipesCubit extends Cubit<RecipesState> {
 
   void clearFilters({bool sortBy = false, bool orderBy = false}) {
     emit(state.clear(sortBy: sortBy, orderBy: orderBy));
+    getAllRecipesEvent();
   }
 
   void setFilters({String? sortBy, String? orderBy}) {
-    emit(state.copyWith(sortBy: sortBy, orderBy: orderBy, skip: 0));
+    emit(state.copyWith(sortBy: "name", orderBy: "asc", skip: 0));
     getAllRecipesEvent();
   }
 
@@ -38,7 +39,7 @@ class RecipesCubit extends Cubit<RecipesState> {
   }
 
   void getAllRecipesEvent() async {
-    emit(state.copyWith(allRecipesStatus: RequestStatus.loading, skip: 0));
+    emit(state.copyWith(allRecipesStatus: RequestStatus.loading, recipes: []));
 
     AlllRecipesParams params = AlllRecipesParams(
       skip: state.skip,
@@ -75,7 +76,7 @@ class RecipesCubit extends Cubit<RecipesState> {
         state.pginationStatus == RequestStatus.loading) {
       return;
     }
-    if (state.skip == state.last) {
+    if (state.skip >= state.last) {
       return;
     }
     emit(

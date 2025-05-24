@@ -33,7 +33,7 @@ class RecipesState extends Equatable {
       skip: skip,
       last: last,
       sortBy: sortBy ? null : this.sortBy,
-      orderBy: orderBy ? "asc" : this.orderBy,
+      orderBy: orderBy ? null : this.orderBy,
     );
   }
 

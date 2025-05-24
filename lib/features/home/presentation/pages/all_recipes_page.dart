@@ -26,10 +26,11 @@ class AllRecipesScreen extends StatelessWidget {
                 PopupMenuButton<String>(
                   icon: const Icon(Icons.sort),
                   onSelected: (value) {
-                    context.read<RecipesCubit>().setFilters(
-                      sortBy: value,
-                      orderBy: value == 'asc' ? 'asc' : 'desc',
-                    );
+                    if (value == "asc" || value == "desc") {
+                      context.read<RecipesCubit>().setFilters(sortBy: value);
+                    } else {
+                      context.read<RecipesCubit>().setFilters(orderBy: value);
+                    }
                   },
                   itemBuilder: (context) {
                     return [

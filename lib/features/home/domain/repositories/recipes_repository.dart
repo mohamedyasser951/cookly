@@ -22,11 +22,6 @@ class AlllRecipesParams {
   });
 
   Map<String, dynamic> toMap() {
-    return {
-      'skip=': skip,
-      'limit=': limit,
-      if (sortedBy != null) 'sortBy=': sortedBy,
-      if (order != null) 'order=': order,
-    };
+    return {'skip': skip, 'limit': limit, 'sortBy': sortedBy, 'order': order};
   }
 }
