@@ -1,4 +1,4 @@
-import 'package:cookly/cookly_app.dart';
+import 'package:cookly/app.dart';
 import 'package:flutter/material.dart';
 
 class AppNavigator {
@@ -38,7 +38,7 @@ class AppNavigator {
 
   dynamic popToRawy({dynamic object}) {
     return navigatorKey.currentState!.pushAndRemoveUntil(
-      MaterialPageRoute(builder: (BuildContext context) =>  CooklyApp()),
+      MaterialPageRoute(builder: (BuildContext context) => App()),
       (Route<dynamic> route) => false,
     );
   }

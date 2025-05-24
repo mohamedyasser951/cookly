@@ -1,5 +1,6 @@
 import 'package:cookly/core/utils/api_basehelper.dart';
 import 'package:cookly/core/utils/navigator.dart';
+import 'package:cookly/features/Auth/auth_inject.dart';
 import 'package:cookly/features/home/home_inject.dart';
 import 'package:cookly/features/search/search_inject.dart';
 import 'package:dio/dio.dart';
@@ -12,6 +13,7 @@ abstract class ServiceLocator {
     //Features
     initRecipes();
     initSearch();
+    initAuth();
     //Core
     _injectAppNavigator();
     _injectApiBaseHelper();

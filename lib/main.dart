@@ -1,4 +1,4 @@
-import 'package:cookly/cookly_app.dart';
+import 'package:cookly/app.dart';
 import 'package:cookly/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +13,7 @@ void main() async {
   ]);
   //Solve Text in release mode
   await ScreenUtil.ensureScreenSize();
-  
+
   await ServiceLocator.init();
-  runApp( CooklyApp());
+  runApp(App());
 }

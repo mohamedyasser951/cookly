@@ -4,7 +4,7 @@ import '../error/exceptions.dart';
 
 enum CodeStatus { defaultCode, activation }
 
-String baseUrl = 'https://dummyjson.com/recipes';
+String baseUrl = 'https://dummyjson.com';
 
 class ApiBaseHelper {
   final Dio dio;
