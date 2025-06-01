@@ -1,3 +1,4 @@
+import 'package:cookly/core/services/cache_service.dart';
 import 'package:cookly/core/utils/api_basehelper.dart';
 import 'package:cookly/core/utils/navigator.dart';
 import 'package:cookly/features/Auth/auth_inject.dart';
@@ -17,6 +18,7 @@ abstract class ServiceLocator {
     //Core
     _injectAppNavigator();
     _injectApiBaseHelper();
+    _injectCacheService();
   }
 }
 
@@ -37,6 +39,10 @@ void _injectApiBaseHelper() {
       ),
     ),
   );
+}
+
+void _injectCacheService() {
+  sl.registerLazySingleton<CacheService>(() => CacheServiceImpl());
 }
 
 AppNavigator appNavigator = sl<AppNavigator>();

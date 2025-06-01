@@ -11,7 +11,7 @@ class CooklyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
-        if (state is LoginSuceess) {
+        if (state is LoggedIn) {
           return HomeLayoutScreen();
         } else {
           return LoginScreen();

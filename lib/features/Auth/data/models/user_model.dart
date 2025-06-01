@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class User {
   final int id;
   final String username;
@@ -21,7 +23,7 @@ class User {
     required this.refreshToken,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
+  factory User.fromMap(Map<String, dynamic> json) {
     return User(
       id: json['id'],
       username: json['username'],
@@ -35,7 +37,7 @@ class User {
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['username'] = username;
@@ -47,5 +49,14 @@ class User {
     data['accessToken'] = accessToken;
     data['refreshToken'] = refreshToken;
     return data;
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory User.fromJson(String source) => User.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'User(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, gender: $gender, image: $image, accessToken: $accessToken, refreshToken: $refreshToken)';
   }
 }

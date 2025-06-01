@@ -7,4 +7,8 @@ abstract class AuthRepository {
     required String userName,
     required String password,
   });
+  Future<Either<Failure, User>> refreshToken();
+  Future<Either<Failure, User>> getCurrentUser();
+  Future<Either<Failure, User?>> getCachedUser();
+  Future<Either<Failure, Unit>> logout();
 }
