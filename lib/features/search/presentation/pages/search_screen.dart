@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cookly/features/search/presentation/search_cubit/search_cubit.dart';
 import 'package:cookly/injection_container.dart';
 import 'package:flutter/material.dart';
@@ -18,36 +20,26 @@ class SearchScreen extends StatelessWidget {
             body: SafeArea(
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: TextField(
-                      onTapOutside:
-                          (event) =>
-                              FocusManager.instance.primaryFocus?.unfocus(),
-                      decoration: InputDecoration(
-                        hintText: 'Search...',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(24.0.r),
-                          ),
-                        ),
-                        prefixIcon: Icon(Icons.search),
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
-                      onChanged: (value) {
-                        context.read<SearchCubit>().searchRecipes(value);
-                      },
-                    ),
-                  ),
+                  SearchWidget(),
                   BlocBuilder<SearchCubit, SearchState>(
                     builder: (context, state) {
+                      if (state is SearchInitial) {
+                        return const Expanded(
+                          child: Center(
+                            child: Text('Search for your favorite Recipe'),
+                          ),
+                        );
+                      }
                       if (state is SearchLoading) {
                         return const Center(child: CircularProgressIndicator());
                       } else if (state is SearchError) {
-                        return Center(child: Text(state.message));
+                        return Expanded(
+                          child: Center(child: Text(state.message)),
+                        );
                       } else if (state is SearchEmpty) {
-                        return Center(child: Text(state.message));
+                        return Expanded(
+                          child: Center(child: Text(state.message)),
+                        );
                       } else if (state is SearchLoaded) {
                         return Expanded(
                           child: ListView.builder(
@@ -69,6 +61,48 @@ class SearchScreen extends StatelessWidget {
               ),
             ),
           );
+        },
+      ),
+    );
+  }
+}
+
+class SearchWidget extends StatefulWidget {
+  const SearchWidget({super.key});
+
+  @override
+  State<SearchWidget> createState() => _SearchWidgetState();
+}
+
+Timer? _debounce;
+
+class _SearchWidgetState extends State<SearchWidget> {
+  @override
+  dispose() {
+    _debounce?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: TextField(
+        onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
+        decoration: InputDecoration(
+          hintText: 'Search...',
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(24.0.r)),
+          ),
+          prefixIcon: Icon(Icons.search),
+          filled: true,
+          fillColor: Colors.white,
+        ),
+        onChanged: (value) {
+          if (_debounce?.isActive ?? false) _debounce?.cancel();
+          _debounce = Timer(const Duration(milliseconds: 500), () {
+            context.read<SearchCubit>().searchRecipes(value);
+          });
         },
       ),
     );
