@@ -7,7 +7,7 @@ import 'package:cookly/features/home/domain/repositories/recipes_repository.dart
 // String getALLRecipes({required int skip, String? sortedBy, String? order}) =>
 //     'https://dummyjson.com/recipes?limit=10&skip=$skip&sortBy=${sortedBy ?? 'name'}&order=${order ?? 'asc'}';
 
-String allRecipesUrl = 'recipes/';
+String allRecipesUrl = '/recipes/';
 
 abstract class RecipesDataSource {
   Future<RecipeResponse> getAllRecipes(AlllRecipesParams params);

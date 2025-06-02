@@ -9,8 +9,6 @@ String baseUrl = 'https://dummyjson.com';
 class ApiBaseHelper {
   final Dio dio;
 
-  static const String versionNumber = 'v1';
-
   ApiBaseHelper({required this.dio}) {
     dio.interceptors.add(
       PrettyDioLogger(

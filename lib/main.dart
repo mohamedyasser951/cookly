@@ -11,9 +11,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: AppColors.scaffoldBackgroundColor,
+      statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
-
     ),
   );
   SystemChrome.setPreferredOrientations(<DeviceOrientation>[
@@ -25,6 +24,6 @@ void main() async {
   Bloc.observer = BlocObserverService();
   // init service locator
   await ServiceLocator.init();
-  
+
   runApp(App());
 }
