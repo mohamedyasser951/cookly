@@ -12,9 +12,9 @@ class CooklyApp extends StatelessWidget {
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
         if (state is LoggedIn) {
-          return WelcomeScreen();
-        } else {
           return HomeLayoutScreen();
+        } else {
+          return WelcomeScreen();
         }
       },
     );

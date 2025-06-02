@@ -51,7 +51,6 @@ class WelcomeScreen extends StatelessWidget {
                   onPressed: () {
                     appNavigator.pushReplacement(screen: LoginScreen());
                   },
-                  style: ElevatedButton.styleFrom(),
                   child: Row(
                     spacing: 8.w,
                     mainAxisAlignment: MainAxisAlignment.center,
