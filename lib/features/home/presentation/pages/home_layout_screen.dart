@@ -65,7 +65,7 @@ class HomeLayoutScreen extends StatelessWidget {
                       FloatingActionButtonLocation.centerDocked,
                   floatingActionButton: FloatingActionButton(
                     onPressed: () {},
-                    backgroundColor: AppColors.secondaryColor,
+                    backgroundColor: AppColors.primaryColor,
                     child: SvgPicture.asset(
                       Assets.imagesChef,
                       colorFilter: ColorFilter.mode(

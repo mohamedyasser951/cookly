@@ -29,7 +29,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         url: loginEndPoint,
         body: {"username": userName, "password": password, "expiresInMins": 60},
       );
-      return User.fromJson(response);
+      return User.fromMap(response);
     } catch (e) {
       rethrow;
     }

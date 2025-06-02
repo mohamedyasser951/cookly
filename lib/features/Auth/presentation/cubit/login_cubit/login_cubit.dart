@@ -22,7 +22,10 @@ class LoginCubit extends Cubit<LoginState> {
     final user = await getCachedUserUsecase.call(NoParams());
     user.fold(
       (failure) => emit(LogedOut()),
-      (user) => emit(LoggedIn(user: user!)),
+      (user) {
+        _user = user!;
+        emit(LoggedIn(user: user));
+      },
     );
   }
 

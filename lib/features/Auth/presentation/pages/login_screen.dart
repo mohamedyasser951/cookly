@@ -29,79 +29,86 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(16.sp),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextFormField(
-                      controller: userNameController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      onTapOutside: (PointerDownEvent event) {
-                        FocusScope.of(context).unfocus();
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: Icon(Icons.person_2_outlined),
-                        label: Text("User Name"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(36.r),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value != null) {
-                          if (value.isEmpty || value == '') {
-                            return "*Field Required";
-                          }
-                        }
-                        return null;
-                      },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(20.sp),
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 64.h),
+                  Text(
+                    "Hello,",
+                    style: TextStyle(
+                      fontSize: 32.sp,
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(height: 8.h),
-                    TextFormField(
-                      controller: passwordController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      keyboardType: TextInputType.emailAddress,
-                      onTapOutside: (PointerDownEvent event) {
-                        FocusScope.of(context).unfocus();
-                      },
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: Icon(Icons.lock_outline),
-                        label: Text("Password"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(36.r),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value != null) {
-                          if (value.isEmpty || value == '') {
-                            return "*Field Required";
-                          }
-                        }
-                        return null;
-                      },
+                  ),
+                  SizedBox(height: 16.h),
+                  Text(
+                    "Welcome Back!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20.sp,
                     ),
-                    SizedBox(height: 16.h),
-                    BlocBuilder<LoginCubit, LoginState>(
-                      builder: (context, state) {
-                        return Visibility(
+                  ),
+                  SizedBox(height: 90.h),
+                  Text("Email"),
+                  SizedBox(height: 8.h),
+                  TextFormField(
+                    controller: userNameController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: InputDecoration(
+                      hintText: "Enter Email",
+                      prefixIcon: Icon(Icons.email_outlined),
+                    ),
+                    onTapOutside: (PointerDownEvent event) {
+                      FocusScope.of(context).unfocus();
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value != null) {
+                        if (value.isEmpty || value == '') {
+                          return "*Field Required";
+                        }
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 16.h),
+                  Text("Password"),
+                  SizedBox(height: 8.h),
+                  TextFormField(
+                    controller: passwordController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: InputDecoration(
+                      hintText: "Enter Password",
+                      prefixIcon: Icon(Icons.password_outlined),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    onTapOutside: (PointerDownEvent event) {
+                      FocusScope.of(context).unfocus();
+                    },
+                    validator: (value) {
+                      if (value != null) {
+                        if (value.isEmpty || value == '') {
+                          return "*Field Required";
+                        }
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 32.h),
+                  BlocBuilder<LoginCubit, LoginState>(
+                    builder: (context, state) {
+                      return Center(
+                        child: Visibility(
                           visible: state is! LoginLoading,
                           replacement: Loading(),
                           child: SizedBox(
                             width: double.maxFinite,
                             child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: StadiumBorder(),
-                              ),
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
                                   context.read<LoginCubit>().loginEvent(
@@ -112,14 +119,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   );
                                 }
                               },
-                              child: Text("Login"),
+                              child: Text("Sign In"),
                             ),
                           ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           ),
