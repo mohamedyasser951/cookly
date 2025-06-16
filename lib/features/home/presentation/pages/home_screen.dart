@@ -2,7 +2,6 @@ import 'package:cookly/core/constants/app_colors.dart';
 import 'package:cookly/core/constants/size_config.dart';
 import 'package:cookly/core/widgets/app_spacer.dart';
 import 'package:cookly/features/home/presentation/pages/all_recipes_page.dart';
-import 'package:cookly/features/home/presentation/widgets/banner_builder_view.dart';
 import 'package:cookly/features/home/presentation/widgets/meals_type_builder.dart';
 import 'package:cookly/features/home/presentation/widgets/popular_recipes_builder.dart';
 import 'package:cookly/injection_container.dart';

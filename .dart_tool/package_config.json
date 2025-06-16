@@ -248,6 +248,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "page_flip",
+      "rootUri": "file:///C:/Users/mohamed/AppData/Local/Pub/Cache/hosted/pub.dev/page_flip-0.2.5+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "path",
       "rootUri": "file:///C:/Users/mohamed/AppData/Local/Pub/Cache/hosted/pub.dev/path-1.9.1",
       "packageUri": "lib/",
@@ -524,7 +530,7 @@
       "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-06-01T19:36:28.246795Z",
+  "generated": "2025-06-16T20:23:38.888450Z",
   "generator": "pub",
   "generatorVersion": "3.7.2",
   "flutterRoot": "file:///C:/development/flutter_sdk",

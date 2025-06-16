@@ -21,6 +21,7 @@ dependencies:
   flutter_svg: ^2.1.0
   fluttertoast: ^8.2.12
   get_it: ^7.6.0
+  page_flip: ^0.2.5+1
   pretty_dio_logger: ^1.4.0
   shared_preferences: ^2.5.3
 dev_dependencies:
