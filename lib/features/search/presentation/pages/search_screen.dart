@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cookly/core/widgets/app_spacer.dart';
+import 'package:cookly/features/home/data/models/recipes_response.dart';
 import 'package:cookly/features/search/presentation/search_cubit/search_cubit.dart';
 import 'package:cookly/injection_container.dart';
 import 'package:flutter/material.dart';
@@ -41,18 +44,7 @@ class SearchScreen extends StatelessWidget {
                           child: Center(child: Text(state.message)),
                         );
                       } else if (state is SearchLoaded) {
-                        return Expanded(
-                          child: ListView.builder(
-                            itemCount: state.recipes.length,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                title: Text(state.recipes[index].name),
-                                subtitle: Text(state.recipes[index].cuisine!),
-                                onTap: () {},
-                              );
-                            },
-                          ),
-                        );
+                        return SearchResultListView(recipes: state.recipes);
                       }
                       return SizedBox.shrink();
                     },
@@ -60,6 +52,59 @@ class SearchScreen extends StatelessWidget {
                 ],
               ),
             ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class SearchResultListView extends StatelessWidget {
+  final List<Recipe> recipes;
+
+  const SearchResultListView({super.key, required this.recipes});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.separated(
+        itemCount: recipes.length,
+        separatorBuilder: (context, index) => AppSpacer(heightRatio: 0.5),
+        itemBuilder: (context, index) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                clipBehavior: Clip.antiAlias,
+                borderRadius: BorderRadius.circular(16.r),
+                child: CachedNetworkImage(
+                  height: 100,
+                  width: 120,
+                  imageUrl: recipes[index].image,
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
+              ),
+              AppSpacer(widthRatio: 0.5),
+              Column(
+                spacing: 8.h,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    recipes[index].name,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Text(
+                    recipes[index].cuisine!,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  Text(
+                    recipes[index].rating.toString(),
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ],
           );
         },
       ),

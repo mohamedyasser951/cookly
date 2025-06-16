@@ -33,26 +33,19 @@ class HomeScreen extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: AppColors.primaryColor,
                       foregroundColor: Colors.white,
-                      child: Icon(Icons.notifications_none_sharp),
+                      child: Icon(Icons.notifications),
                     ),
                   ],
                 ),
-                AppSpacer(heightRatio: 0.4),
-                Text(
-                  "Featured Recipes",
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
-                ),
-                AppSpacer(heightRatio: 0.4),
-                BannerBuilderView(),
-                AppSpacer(heightRatio: 0.4),
-                Text(
-                  "Category",
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
-                ),
+                // AppSpacer(heightRatio: 0.4),
+                // Text(
+                //   "Featured Recipes",
+                //   style: Theme.of(
+                //     context,
+                //   ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+                // ),
+                // AppSpacer(heightRatio: 0.4),
+                // BannerBuilderView(),
                 AppSpacer(heightRatio: 0.4),
                 MealsTypeBuilder(),
                 AppSpacer(heightRatio: 0.5),
