@@ -1,14 +1,23 @@
+import 'package:cookly/core/constants/app_colors.dart';
 import 'package:cookly/core/utils/request_status.dart';
 import 'package:cookly/features/home/data/models/recipes_response.dart';
 import 'package:cookly/features/home/presentation/cubits/recipes_cubit/recipes_cubit.dart';
+import 'package:cookly/features/home/presentation/pages/recipe_category_flip.dart';
 import 'package:cookly/features/home/presentation/widgets/recipes_list_view_builder.dart';
 import 'package:cookly/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AllRecipesScreen extends StatelessWidget {
+class AllRecipesScreen extends StatefulWidget {
   const AllRecipesScreen({super.key});
+
+  @override
+  State<AllRecipesScreen> createState() => _AllRecipesScreenState();
+}
+
+class _AllRecipesScreenState extends State<AllRecipesScreen> {
+  bool isList = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +68,15 @@ class AllRecipesScreen extends StatelessWidget {
                 ),
               ],
             ),
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: AppColors.primaryColor,
+              onPressed: () {
+                setState(() {
+                  isList = !isList;
+                });
+              },
+              child: Icon(isList ? Icons.list : Icons.grid_view),
+            ),
             body: Padding(
               padding: EdgeInsets.all(8.0.sp),
               child: Column(
@@ -97,7 +115,9 @@ class AllRecipesScreen extends StatelessWidget {
                                   return state.recipes;
                                 },
                                 builder: (context, state) {
-                                  return RecipesListViewBuilder(recipes: state);
+                                  return isList
+                                      ? RecipesListViewBuilder(recipes: state)
+                                      : RecipeCategoryFlip(recipes: state);
                                 },
                               );
                             }

@@ -58,7 +58,8 @@ class HomeLayoutScreen extends StatelessWidget {
             return BlocBuilder<BottomNavCubit, int>(
               builder: (context, index) {
                 return Scaffold(
-                  // extendBody: true,
+                  resizeToAvoidBottomInset: false, // ← Add this line
+
                   backgroundColor: AppColors.scaffoldBackgroundColor,
                   body: IndexedStack(index: index, children: pages),
                   floatingActionButtonLocation:
