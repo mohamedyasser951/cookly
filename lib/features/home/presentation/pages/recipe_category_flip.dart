@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cookly/core/widgets/app_spacer.dart';
 import 'package:cookly/features/home/data/models/recipes_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_flip/page_flip.dart';
 
 class RecipeCategoryFlip extends StatelessWidget {
@@ -91,7 +90,7 @@ class _DemoPageState extends State<RecipeCardCatalog> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.separated(
-        padding: EdgeInsets.all(8.sp),
+        // padding: EdgeInsets.all(8.sp),
         itemCount: widget.recipe.length,
         separatorBuilder: (context, index) => AppSpacer(heightRatio: 0.5),
         itemBuilder:

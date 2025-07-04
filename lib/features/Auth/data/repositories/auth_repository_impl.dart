@@ -70,4 +70,10 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(ServerFailure.formServerException(error));
     }
   }
+  
+  @override
+  Future<Either<Failure, User>> autoLogin() {
+    // TODO: implement autoLogin
+    throw UnimplementedError();
+  }
 }
